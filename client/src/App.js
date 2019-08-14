@@ -5,8 +5,8 @@ import Home from './components/pages/Home/HomePage';
 import Posts from './components/pages/Posts/PostsPage';
 import Contact from './components/pages/Contact/ContactPage';
 import NotFound from './components/pages/NotFound/NotFoundPage';
-import SinglePost from './components/pages/SinglePost/SinglePost.js',
-import NewPost from './components/pages/NewPost/NewPost.js',
+import SinglePost from './components/pages/SinglePost/SinglePost.js';
+import NewPost from './components/pages/NewPost/NewPost.js';
 
 class App extends React.Component {
 
