@@ -6,4 +6,4 @@ const Root = () => (
     <App/>
 );
 
-ReactDOM.render(<App />, document.getElementById('root'));
+ReactDOM.render(<Root />, document.getElementById('root'));
