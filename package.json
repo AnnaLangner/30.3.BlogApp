@@ -1,0 +1,16 @@
+{
+  "name": "30.3.BlogApp",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:AnnaLangner/30.3.BlogApp.git",
+  "author": "Anna Langner <annalangner06@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "npm-run-all": "4.1.5"
+  },
+  "scripts": {
+    "start": "npm-run-all -p -l start:*",
+    "start:server": "cd server && node server.js",
+    "start:client": "cd client && yarn start"
+  }
+}
