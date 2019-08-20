@@ -2,16 +2,29 @@
 export const getPosts = ({ posts }) => posts;
 
 /* ACTIONS */
-export const LOAD_POSTS = createActionName('LOAD_POSTS');
+
 
 // action name creator
 const reducerName = 'posts';
 const createActionName = name => `app/${reducerName}/${name}`;
+export const LOAD_POSTS = createActionName('LOAD_POSTS');
 export const loadPosts = payload => ({ payload, type: LOAD_POSTS });
 
 /* INITIAL STATE */
 
 const initialState = [];
+
+/* THUNKS */
+export const loadPostsRequest = () => {
+    return dispatch => {
+        console.log('Request started...');
+        setTimeout(() => {
+            const arr = [{id: 'qweasd123', title: 'Test', content: 'Lorem ipsum'}];
+            dispatch(loadPosts(arr));
+            console.log('Request finished after 2 sec!')
+        }, 2000);
+    };
+};
 
 /* REDUCER */
 
