@@ -9,10 +9,10 @@ class PostsCounter extends React.Component {
     }
 
     render() {
-        const { counter } = this.props;
+        const { posts } = this.props;
 
         return (
-            <div>Posts amount: {counter.map(post => <p key={post.id}>{post.counter}</p>)}</div>
+            <div>Posts amount: {posts.map(post => <p key={post.id}>{post.data.length}</p>)}</div>
         )
     }
 }
