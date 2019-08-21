@@ -9,7 +9,9 @@ export const getPostsCounter = ({ posts }) => posts.data.length;
 // action name creator
 const reducerName = 'posts';
 const createActionName = name => `app/${reducerName}/${name}`;
+
 export const LOAD_POSTS = createActionName('LOAD_POSTS');
+
 export const loadPosts = payload => ({ payload, type: LOAD_POSTS });
 
 /* INITIAL STATE */

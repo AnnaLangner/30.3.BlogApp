@@ -1,5 +1,4 @@
 import React from 'react';
-import { PropTypes } from 'prop-types';
 
 class PostsCounter extends React.Component {
 
@@ -9,21 +8,12 @@ class PostsCounter extends React.Component {
     }
 
     render() {
-        const { posts } = this.props;
+        const { counter } = this.props;
 
         return (
-            <div>Posts amount: {posts.map(post => <p key={post.id}>{post.data.length}</p>)}</div>
+            <div>{counter > 0 ? 'Posts amount: ' + counter : ' No posts '}</div>
         )
     }
 }
-
-PostsCounter.propTypes = {
-    counter: PropTypes.arrayOf(
-        PropTypes.shape({
-            id: PropTypes.string.isRequired,
-        })
-    ),
-    loadPosts: PropTypes.func.isRequired,
-};
 
 export default PostsCounter;
