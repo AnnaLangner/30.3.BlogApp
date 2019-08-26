@@ -35,7 +35,7 @@ const initialState = {
 /* THUNKS */
 export const loadPostsRequest = () => {
     return async dispatch => {
-
+        dispatch(startRequest());
         try {
             let res = await axios.get(`${API_URL}/posts`);
             await new Promise((resolve, reject) => setTimeout(resolve, 2000));
