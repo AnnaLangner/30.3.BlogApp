@@ -21,13 +21,13 @@ class Posts extends React.Component {
                     <PostsList posts={posts}/>
                 </div>
             );
-        } else if (request.pending === true || request.success === null) {
+        } else if (request.pending === true && request.success === null && request.error === null) {
             return (
                 <div>
                     <Spinner/>
                 </div>
             );
-        } else if (request.pending === false && request.error !== null) {
+        } else if (request.pending === false && request.error != null) {
             return (
                 <div>
                     <Alert variant={'error'}>{request.error}</Alert>
