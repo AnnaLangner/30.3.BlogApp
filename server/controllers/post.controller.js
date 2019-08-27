@@ -9,3 +9,14 @@ exports.getPosts = async (req, res) => {
         res.status(500).json(err);
     }
 };
+
+//get single post
+
+exports.getSinglePost = async(req, res) => {
+    Post.findOne({ id: req.params.id }).exec((err, post) => {
+        if (err) {
+            res.status(500).send(err);
+        }
+        res.json({ post });
+    });
+}
