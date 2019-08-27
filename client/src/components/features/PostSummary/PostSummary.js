@@ -11,9 +11,9 @@ const PostSummary = ({ id, title, content }) => (
     <article className={'post-summary'}>
         <SmallTitle>{title}</SmallTitle>
         <HtmlBox>{cutText(content, 250)}</HtmlBox>
-        <Button variant={'primary'}>
+        <Button variant={'primary'}><Link to={`/posts/${id}`}>
             Read more
-        </Button>
+        </Link></Button>
     </article>
 );
 
