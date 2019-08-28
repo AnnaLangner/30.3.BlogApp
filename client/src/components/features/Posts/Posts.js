@@ -13,9 +13,9 @@ class Posts extends React.Component {
     }
 
     render() {
-        const { posts, request, counter } = this.props;
+        const { posts, request } = this.props;
 
-        if (request.pending === false && request.success === true && counter > 0) {
+        if (request.pending === false && request.success === true && posts.length > 0) {
             return (
                 <div>
                     <PostsList posts={posts}/>
@@ -33,7 +33,7 @@ class Posts extends React.Component {
                     <Alert variant={'error'}>{request.error}</Alert>
                 </div>
             );
-        } else if (request.pending === false && request.success === true && counter === 0) {
+        } else if (request.pending === false && request.success === true && posts.length === 0) {
             return (
                 <div>
                     <Alert variant={'info'}>No posts</Alert>
