@@ -32,8 +32,8 @@ const initialState = {
         pending: false,
         error: null,
         success: null,
-        singlePost: '',
     },
+    singlePost: null,
 };
 
 /* THUNKS */
@@ -44,7 +44,20 @@ export const loadPostsRequest = () => {
             let res = await axios.get(`${API_URL}/posts`);
             await new Promise((resolve, reject) => setTimeout(resolve, 2000));
             dispatch(loadPosts(res.data));
-            dispatch(loadSinglePost(res.singlePost));
+            dispatch(endRequest());
+        } catch (e) {
+            dispatch(errorRequest(e.message));
+        }
+    };
+};
+
+export const loadSinglePostRequest = (id) => {
+    return async dispatch => {
+        dispatch(startRequest());
+        try {
+            let res = await axios.get(`${API_URL}/posts/${id}`);
+            await new Promise((resolve, reject) => setTimeout(resolve, 2000));
+            dispatch(loadSinglePost(res.data));
             dispatch(endRequest());
         } catch (e) {
             dispatch(errorRequest(e.message));
@@ -65,7 +78,7 @@ export default function reducer(statePart = initialState, action = {}) {
         case ERROR_REQUEST:
             return { ...statePart, request: { pending: false, error: action.error, success: false } };
         case LOAD_SINGLE_POST:
-            return { ...statePart, data: action.payload, request: { pending: true, error: null, success: null } };
+            return { ...statePart, singlePost: action.payload };
         default:
             return statePart;
     }

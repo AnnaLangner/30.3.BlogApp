@@ -5,18 +5,20 @@ import Spinner from '../../common/Spinner/Spinner';
 import Alert from "../../common/Alert/Alert";
 import HtmlBox from '../../common/HtmlBox/HtmlBox';
 import SmallTitle from '../../common/SmallTitle/SmallTitle';
+import { withRouter } from 'react-router-dom';
 
 class SinglePost extends React.Component {
 
     componentDidMount() {
-        const {loadPosts} = this.props;
-        loadPosts();
+        const {loadPost, match} = this.props;
+        console.log(match.params.id);
+        loadPost(match.params.id);
     }
 
     render() {
         const { post, request } = this.props;
 
-        if (request.pending === false && request.success === true && post !== undefined) {
+        if (request.pending === false && request.success === true && post ) {
             return (
                 <div>
                     <article className={'post-summary'}>
@@ -61,7 +63,7 @@ SinglePost.propTypes = {
             content: PropTypes.string.isRequired,
         })
     ),
-    loadPosts: PropTypes.func.isRequired,
+    loadPost: PropTypes.func.isRequired,
 };
 
-export default SinglePost;
+export default withRouter(props => <SinglePost {...props}/>);
