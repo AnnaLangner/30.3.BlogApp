@@ -4,12 +4,14 @@ import { PropTypes } from 'prop-types';
 import PostsList from '../PostsList/PostsList';
 import Spinner from '../../common/Spinner/Spinner';
 import Alert from "../../common/Alert/Alert";
+import {resetRequest} from "../../../redux/postsRedux";
 
 class Posts extends React.Component {
 
     componentDidMount() {
         const { loadPosts } = this.props;
         loadPosts();
+        resetRequest();
     }
 
     render() {

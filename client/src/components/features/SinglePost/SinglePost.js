@@ -6,6 +6,7 @@ import Alert from "../../common/Alert/Alert";
 import HtmlBox from '../../common/HtmlBox/HtmlBox';
 import SmallTitle from '../../common/SmallTitle/SmallTitle';
 import { withRouter } from 'react-router-dom';
+import {resetRequest} from "../../../redux/postsRedux";
 
 class SinglePost extends React.Component {
 
@@ -13,6 +14,7 @@ class SinglePost extends React.Component {
         const {loadPost, match} = this.props;
         console.log(match.params.id);
         loadPost(match.params.id);
+        resetRequest();
     }
 
     render() {
