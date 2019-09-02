@@ -21,7 +21,7 @@ class SinglePost extends React.Component {
         if (request.pending === false && request.success === true && post ) {
             return (
                 <div>
-                    <article className={'post-summary'}>
+                    <article>
                         <SmallTitle>{post.title}</SmallTitle>
                         <HtmlBox>{post.content}</HtmlBox>
                     </article>
