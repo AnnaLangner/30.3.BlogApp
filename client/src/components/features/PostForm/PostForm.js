@@ -12,7 +12,6 @@ import Alert from "../../common/Alert/Alert";
 import Spinner from "../../common/Spinner/Spinner";
 
 import './PostForm.scss'
-import {resetRequest} from "../../../redux/postsRedux";
 
 class PostForm extends React.Component {
     state = {
@@ -34,7 +33,7 @@ class PostForm extends React.Component {
     };
 
     addPost = (e) => {
-        const { addPost } = this.props;
+        const { addPost, resetRequest } = this.props;
         const { post } = this.state;
 
         e.preventDefault();
