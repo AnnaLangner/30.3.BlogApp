@@ -19,11 +19,11 @@ export const LOAD_POSTS_PAGE = createActionName('LOAD_POSTS_PAGE');
 export const START_REQUEST = createActionName('START_REQUEST');
 export const END_REQUEST = createActionName('END_REQUEST');
 export const ERROR_REQUEST = createActionName('ERROR_REQUEST');
-export const RESET_REQUEST = createActionName('RESET_REQUEST')
+export const RESET_REQUEST = createActionName('RESET_REQUEST');
 
 export const loadPosts = payload => ({ payload, type: LOAD_POSTS });
 export const loadSinglePost = payload => ({payload, type: LOAD_SINGLE_POST});
-export const loadPostByPage = payload => ({payload, type: LOAD_POSTS_PAGE});
+export const loadPostsByPage = payload => ({payload, type: LOAD_POSTS_PAGE});
 export const startRequest = () => ({ type: START_REQUEST });
 export const endRequest = () => ({ type: END_REQUEST });
 export const errorRequest = error => ({ error, type: ERROR_REQUEST });
@@ -105,7 +105,7 @@ export const loadPostsByPageRequest = (page) => {
                 presentPage: page,
             };
 
-            dispatch(loadPostByPage(payload));
+            dispatch(loadPostsByPage(payload));
             dispatch(endRequest());
         } catch (e) {
             dispatch(errorRequest(e.message));
