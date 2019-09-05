@@ -66,7 +66,7 @@ Posts.propTypes = {
             author: PropTypes.string.isRequired,
         })
     ),
-    loadPostsByPages: PropTypes.func.isRequired,
+    loadPostsByPage: PropTypes.func.isRequired,
 };
 
 export default Posts;
