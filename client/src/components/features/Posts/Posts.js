@@ -9,24 +9,29 @@ import Pagination from '../../common/Pagination/Pagination';
 class Posts extends React.Component {
 
     componentDidMount() {
-        const { loadPostsByPage } = this.props;
-        loadPostsByPage(1);
+        const { loadPostsByPage, initialPage, postsPerPage } = this.props;
+        loadPostsByPage(initialPage || 1, postsPerPage);
     }
 
     loadPostsPage = (page) => {
-        const { loadPostsByPage } = this.props;
-        loadPostsByPage(page);
+        const { loadPostsByPage, postsPerPage } = this.props;
+        loadPostsByPage(page, postsPerPage);
     };
 
     render() {
-        const { posts, request, pages } = this.props;
+        const { posts, request, pages, pagination, presentPage } = this.props;
         const { loadPostsPage } = this;
 
-        if (request.pending === false && request.success === true && posts.length > 0) {
+        if (pagination === undefined) {
+            return (
+                pagination = true
+            );
+
+        } else if (request.pending === false && request.success === true && posts.length > 0) {
             return (
                 <div>
                     <PostsList posts={posts}/>
-                    <Pagination pages={pages} onPageChange={loadPostsPage} />
+                    <Pagination pages={pages} onPageChange={loadPostsPage} initialPage={presentPage} />
                 </div>
             );
         } else if (request.pending === true || request.success === null) {
