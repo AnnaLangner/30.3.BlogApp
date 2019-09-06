@@ -7,6 +7,7 @@ export const getPostsCounter = ({ posts }) => posts.data.length;
 export const getRequest = ({ posts }) => posts.request;
 export const getSinglePost = ({ posts }) => posts.singlePost;
 export const getPages = ({ posts }) => Math.ceil(posts.amount / posts.postsPerPage);
+export const getPostsPerPage = ({ posts }) => posts.postsPerPage;
 
 /* ACTIONS */
 // action name creator
@@ -135,7 +136,7 @@ export default function reducer(statePart = initialState, action = {}) {
         case ERROR_REQUEST:
             return { ...statePart, request: { pending: false, error: action.error, success: false } };
         case RESET_REQUEST:
-            return { ...statePart, request: { pending: true, error: null, success: null } };
+            return { ...statePart, request: { pending: false, error: null, success: null } };
         default:
             return statePart;
     }
