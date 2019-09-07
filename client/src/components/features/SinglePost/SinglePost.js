@@ -1,11 +1,12 @@
 import React from 'react';
 import { PropTypes } from 'prop-types';
+import { withRouter } from 'react-router-dom';
+import { FacebookProvider, Comments } from 'react-facebook';
 
 import Spinner from '../../common/Spinner/Spinner';
 import Alert from "../../common/Alert/Alert";
 import HtmlBox from '../../common/HtmlBox/HtmlBox';
 import SmallTitle from '../../common/SmallTitle/SmallTitle';
-import { withRouter } from 'react-router-dom';
 
 class SinglePost extends React.Component {
 
@@ -17,7 +18,7 @@ class SinglePost extends React.Component {
     }
 
     render() {
-        const { post, request } = this.props;
+        const { post, request, location } = this.props;
 
         if (request.pending === false && request.success === true && post ) {
             return (
@@ -26,6 +27,9 @@ class SinglePost extends React.Component {
                         <SmallTitle>{post.title}</SmallTitle>
                         <HtmlBox>{post.content}</HtmlBox>
                         <p> Author: {post.author}</p>
+                        <FacebookProvider appId="2447493922148900">
+                            <Comments href={`http://localhost:3000/${location.pathname}`} />
+                        </FacebookProvider>
                     </article>
                 </div>
             );
