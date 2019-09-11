@@ -119,7 +119,7 @@ export const loadRandomPostRequest = () => {
     return async dispatch => {
         dispatch(startRequest());
         try {
-            let res = await axios.get(`${API_URL}post/random`);
+            let res = await axios.get(`${API_URL}/post/random`);
             await new Promise((resolve, reject) => setTimeout(resolve, 2000));
             dispatch(loadRandomPost(res.data));
             dispatch(endRequest());
@@ -146,7 +146,7 @@ export default function reducer(statePart = initialState, action = {}) {
                 data: [...action.payload.posts],
             };
         case LOAD_RANDOM_POST:
-            return { ...statePart, singlePost: action.payload, request: { pending: true, error: null, success: null } };
+            return { ...statePart, singlePost: action.payload};
         case START_REQUEST:
             return { ...statePart, request: { pending: true, error: null, success: null } };
         case END_REQUEST:

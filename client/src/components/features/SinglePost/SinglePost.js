@@ -11,7 +11,6 @@ class SinglePost extends React.Component {
 
     componentDidMount() {
         const {loadPost, resetRequest, match} = this.props;
-        console.log(match.params.id);
         loadPost(match.params.id);
         resetRequest();
     }
