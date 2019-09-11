@@ -10,12 +10,13 @@ class Posts extends React.Component {
 
     componentDidMount() {
         const { loadPostsByPage, initialPage, postsPerPage } = this.props;
-        loadPostsByPage(initialPage || 1, postsPerPage);
+        console.log(postsPerPage, initialPage, 'test');
+        loadPostsByPage(initialPage || 1, postsPerPage || 10);
     }
 
     loadPostsPage = (page) => {
         const { loadPostsByPage, postsPerPage } = this.props;
-        loadPostsByPage(page, postsPerPage);
+        loadPostsByPage(page, postsPerPage || 10);
     };
 
     render() {
@@ -30,7 +31,7 @@ class Posts extends React.Component {
             return (
                 <div>
                     <PostsList posts={posts}/>
-                    <Pagination pages={pages} onPageChange={loadPostsPage} initialPage={presentPage} />
+                    { pagination && <Pagination pages={pages} onPageChange={loadPostsPage} initialPage={presentPage} /> }
                 </div>
             );
         } else if (request.pending === true || request.success === null) {
