@@ -1,11 +1,15 @@
 import React from 'react';
 import { PropTypes } from 'prop-types';
+import { withRouter } from 'react-router-dom';
+import { FacebookProvider, Comments, ShareButton  } from 'react-facebook';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faShare } from '@fortawesome/free-solid-svg-icons';
 
 import Spinner from '../../common/Spinner/Spinner';
 import Alert from "../../common/Alert/Alert";
 import HtmlBox from '../../common/HtmlBox/HtmlBox';
 import SmallTitle from '../../common/SmallTitle/SmallTitle';
-import { withRouter } from 'react-router-dom';
+import { BASE_URL} from "../../../config";
 
 class SinglePost extends React.Component {
 
@@ -16,15 +20,26 @@ class SinglePost extends React.Component {
     }
 
     render() {
-        const { post, request } = this.props;
+        const { post, request, location } = this.props;
 
         if (request.pending === false && request.success === true && post ) {
             return (
                 <div>
                     <article>
                         <SmallTitle>{post.title}</SmallTitle>
+                        <FacebookProvider appId="2447493922148900">
+                            <ShareButton href= {`${BASE_URL}/${location.pathname}`}>
+                                <FontAwesomeIcon
+                                    icon={faShare}
+                                />
+                                Share
+                            </ShareButton>
+                        </FacebookProvider>
                         <HtmlBox>{post.content}</HtmlBox>
                         <p> Author: {post.author}</p>
+                        <FacebookProvider appId="2447493922148900">
+                            <Comments href={`${BASE_URL}/${location.pathname}`} />
+                        </FacebookProvider>
                     </article>
                 </div>
             );

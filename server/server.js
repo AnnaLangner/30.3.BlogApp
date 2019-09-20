@@ -15,6 +15,9 @@ const postRoutes = require('./routes/post.routes');
 app.use(cors());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
+
+// Serve static files from the React app
+app.use(express.static(path.join(__dirname, '/../client/build')));
 app.use('/api', postRoutes);
 app.use(helmet());
 app.use((req, res, next) => {
@@ -23,6 +26,10 @@ app.use((req, res, next) => {
 });
 // Serve static files from the React app
 app.use(express.static(path.join(__dirname, '/../client/build')));
+
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname + '/../client/build/index.html'));
+});
 
 app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname + '/../client/build/index.html'));
